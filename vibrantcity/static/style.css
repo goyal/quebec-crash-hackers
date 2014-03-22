@@ -1,0 +1,25 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+	font-family:Century Gothic;
+}
+
+
+
+.navbar {
+	background-color:#005059;
+}
+
+.navbar a {
+	color:#fff;
+}
+
+.roundedInput {
+	border-radius: 1em;
+	margin-right:2em;
+}
+
+
+div#timelinecontainer{ height: 100px; }
+div#mapcontainer{ height: 300px; }
