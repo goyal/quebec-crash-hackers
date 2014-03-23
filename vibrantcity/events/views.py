@@ -2,51 +2,33 @@ from django.shortcuts import render
 from django.http import HttpResponse, StreamingHttpResponse
 from events.search import Events
 
+import requests
 import json
 
 def index(request):
-    # result = Events('DOID', 'asthm').find()
-    # context = {'result': result}
-    # return render(request, 'index.html', context)
-    # res = Events().geocode_event_location('quebec city, canada')
-    jsonstr = """[
-				  {
-				    "point": {"lon": 7.459717, "lat": 9.053277},
-				    "title": "Nigeria",
-				    "start": "2008-06-01",
-				    "options": {
-				      "theme": "TimeMapDataset.blueTheme()",
-				      "description": "A protest over the price of water in Abuja results in violence."
-				    }
-				  },
-
-				  {
-				    "point": {"lon": 91.274414, "lat": 29.439598},
-				    "title": "Tibet",
-				    "start": "2008-07-15",
-				    "options": {
-				      "theme": "TimeMapDataset.redTheme()",
-				      "description": "China launcheds a political crackdown in Tibet."
-				    }
-				  },
-
-				  {
-				    "point": {"lon": 71.474991, "lat": 34.163807},
-				    "title": "Pakistan",
-				    "start": "2008-10-19",
-				    "options": {
-				      "theme": "TimeMapDataset.blueTheme()",
-				      "description": "The Taliban threaten to blow up Warsak Dam."
-				    }
-				  }
-				]"""
-
-    resp = StreamingHttpResponse(jsonstr, content_type='application/json')
-    resp['Access-Control-Allow-Origin'] = '*'
-    return resp
+    return HttpResponse('test')
 
 def geocode_debug(request):
 	result = Events().geocode_event_location(request.GET['address'])
 	result = json.loads(result)
 	latlng = '%s,%s'%(result['lat'], result['lng'])
 	return HttpResponse(latlng)
+
+def list_events(request):
+    result = requests.get('http://107.170.117.164:8890/sparql?default-graph-uri=&query=select+%3Fdd+%3Fle+%3Fla+%3Flo%0D%0Awhere+%7B%0D%0A%3Fa+rdfs%3Alabel+%3Fle+.%0D%0A%3Fa+%3Chttp%3A%2F%2Fdonnees.ville.qc.ca%2FDateDebut%3E+%3Fdd+.%0D%0A%3Fa+%3Chttp%3A%2F%2Fdonnees.ville.qc.ca%2FxLieu%3E+%3Fl+.%0D%0A%3Fl+%3Chttp%3A%2F%2Fdonnees.ville.qc.ca%2FLatitude%3E+%3Fla+.%0D%0A%3Fl+%3Chttp%3A%2F%2Fdonnees.ville.qc.ca%2FLongitude%3E+%3Flo+.%0D%0AFILTER%28regex%28%3Fdd%2C%272014-03%27%29%29.%0D%0A%7D+%0D%0Aorder+by+1+2+3+4%0D%0A&format=json&timeout=0&debug=on')
+    responseJson = result.json()
+    events = []
+    data = responseJson.get('results')
+    bindings = data.get('bindings')
+
+    for binding in bindings:
+        events.append(dict(
+		    point = dict(lon=binding['lo']['value'], lat=binding['la']['value']),
+		    title = binding['le']['value'],
+		    start = binding['dd']['value'],
+		    options = dict()
+		    ))
+
+    resp = StreamingHttpResponse(json.dumps(events), content_type='application/json')
+    resp['Access-Control-Allow-Origin'] = '*'
+    return resp
