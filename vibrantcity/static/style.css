@@ -1,18 +1,38 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 4.5em;
   padding-bottom: 20px;
-	font-family:Century Gothic;
+  font-family:Century Gothic;
+  background-color:#3ca5b1;
 }
 
-
+.timeline-date-label {
+	color:#fff;
+}
 
 .navbar {
 	background-color:#005059;
+    min-height: 5em;
+	border:none;
 }
 
-.navbar a {
+.navbar-default 
+.navbar-nav > li > a {
 	color:#fff;
+}
+
+.navbar-default 
+.navbar-nav > li > a:hover {
+	color:#50dfef;
+}
+
+.navbar-default .navbar-brand {
+	color:#fff;
+	font-size:1em;
+}
+
+.navbar-default .navbar-brand img {
+	vertical-align:bottom;
 }
 
 .roundedInput {
@@ -20,6 +40,14 @@ body {
 	margin-right:2em;
 }
 
+.timeline-ether-bg {
+	background-color:#3ca5b1;
+}
 
-div#timelinecontainer{ height: 100px; }
-div#mapcontainer{ height: 300px; }
+.timeline-ether-weekends{
+	position:absolute;
+	background-color:none;
+}
+
+div#timelinecontainer{ height: 8em; width:100%;}
+div#mapcontainer{ height: 30em; width:100%;}

@@ -1,5 +1,5 @@
 div, p {
-font-family: Verdana, Arial, sans-serif;
+color:#000;
 }
 
 p.content {
@@ -50,7 +50,6 @@ div.infodescription {
 }
 
 div.custominfostyle {
-    font-family: Georgia, Garamond, serif;
     font-size: 1.5em;
     font-style: italic;
     width: 20em;

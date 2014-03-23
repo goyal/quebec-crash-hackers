@@ -386,7 +386,7 @@ TimeMap.prototype = {
         tm.map = map = new Mapstraction(tm.mElement, options.mapProvider);
 
         // display the map centered on a latitude and longitude
-        map.setCenterAndZoom(options.mapCenter, options.mapZoom);
+        map.setCenterAndZoom(options.mapCenter, 8);//options.mapZoom
         
         // set default controls and map type
         map.addControls({

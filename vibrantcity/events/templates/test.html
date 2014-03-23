@@ -11,10 +11,11 @@
 	<link href="../../static/bootstrap.css" rel="stylesheet">
 	<link href="../../static/examples.css" type="text/css" rel="stylesheet"/>
 	<link href="../../static/style.css" rel="stylesheet">
-	<link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+	<link rel="shortcut icon" href="../../static/images/favicon.ico">
 		
-    <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAASI0kCI-azC8RgbOZzWc3VRRarOQe_TKf_51Omf6UUSOFm7EABRRhO0PO4nBAO9FCmVDuowVwROLo3w"
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAiISY5HzTcu7eMGB9_zefJtR-8eqenBfw"
       type="text/javascript"></script>
+	  
     <!--script type="text/javascript" src="../../plugins/timemap.2.0.1/lib/jquery-1.6.2.min.js"></script-->
 	<script src="../../plugins/jquery.js"></script>
 	<script src="../../plugins/bootstrap.js"></script>
@@ -27,7 +28,8 @@
 
 var tm;
 $(function() {
-
+	var myTheme = TimeMapTheme.create("red", {eventColor:"#000"});
+	
     tm = TimeMap.init({
         mapId: "map",               // Id of map div element (required)
         timelineId: "timeline",     // Id of timeline div element (required) 
@@ -35,15 +37,31 @@ $(function() {
 		        {
 					type: "json",
 					    options: {
-					        url: "http://127.0.0.1:8000/events/"
+					        //url: "http://127.0.0.1:8000/events/"
+							url: "http://127.0.0.1:8000/events/"
 					    }
 		            
 		        }
 		    ],
-        bandIntervals: [
-            Timeline.DateTime.WEEK, 
-            Timeline.DateTime.DAY
-        ]
+		options: {
+			mapType: "normal",
+			theme: myTheme,
+			showMapCtrl: "false",
+		},
+		bandInfo: [ 
+		            { 
+		               width:          "80%", 
+		               intervalUnit:   Timeline.DateTime.DAY, 
+		               intervalPixels: 100 
+		            }, 
+		            { 
+		               width:          "20%", 
+		               intervalUnit:   Timeline.DateTime.MONTH, 
+		               intervalPixels: 600, 
+		               showEventText:  false,
+					   layout:         'overview'
+		            } 
+		       ], 
     });
     
     // filter function for tags
@@ -85,7 +103,7 @@ $(function() {
 					  <span class="icon-bar"></span>
 					  <span class="icon-bar"></span>
 				  </button>
-				  <a class="navbar-brand" href="#"><img src="../../static/images/logo.png"/></a>
+				  <div class="navbar-brand"><img src="../../static/images/logo.png"/></div>
 			  </div>
 		  
 			  <div class="navbar-collapse collapse">
