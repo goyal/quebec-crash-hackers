@@ -101,7 +101,7 @@ var Mapstraction = mxn.Mapstraction = function(element, api, debug) {
 	this.options = {
 		enableScrollWheelZoom: false,
 		enableDragging: true,
-		enableMultipleBubbles: false,
+		enableMultipleBubbles: false
 	};
 	
 	this.addControlsArgs = {};

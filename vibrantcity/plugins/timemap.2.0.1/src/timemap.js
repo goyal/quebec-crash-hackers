@@ -356,6 +356,7 @@ TimeMap.init = function(config) {
             type = data.type || options.type,
             // get loader class
             loaderClass = (typeof type == 'string') ? TimeMap.loaders[type] : type,
+			//loaderClass = TimeMap.loaders.json;
             // load with appropriate loader
             loader = new loaderClass(options);
         loader.load(dataset, callback);
@@ -386,7 +387,7 @@ TimeMap.prototype = {
         tm.map = map = new Mapstraction(tm.mElement, options.mapProvider);
 
         // display the map centered on a latitude and longitude
-        map.setCenterAndZoom(options.mapCenter, 8);//options.mapZoom
+        map.setCenterAndZoom(options.mapCenter, options.mapZoom);
         
         // set default controls and map type
         map.addControls({

@@ -23,10 +23,10 @@ def list_events(request):
 
     for binding in bindings:
         events.append(dict(
-		    point = dict(lon=binding['lo']['value'], lat=binding['la']['value']),
+		    point = dict(lon=float(binding['lo']['value']), lat=float(binding['la']['value'])),
 		    title = binding['le']['value'],
 		    start = binding['dd']['value'],
-		    options = dict()
+		    options = dict(theme='TimeMapDataset.blueTheme()', description='<strong>bla</strong>')
 		    ))
 
     resp = StreamingHttpResponse(json.dumps(events), content_type='application/json')
