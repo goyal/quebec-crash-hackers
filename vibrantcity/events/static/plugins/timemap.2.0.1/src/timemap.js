@@ -1534,7 +1534,7 @@ TimeMapTheme = function(options) {
         /** Path to instant event icon directory 
          * @name TimeMapTheme#eventIconPath 
          * @type String */
-        eventIconPath:  "timemap/images/",
+        eventIconPath:  "/static/timemap/images/",
         /** Filename of instant event icon image
          * @name TimeMapTheme#eventIconImage 
          * @type String */
