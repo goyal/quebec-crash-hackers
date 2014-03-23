@@ -21,14 +21,34 @@ body {
 	color:#fff;
 }
 
+.timeline-band-inner a {
+	color:#fff;
+}
+
 .navbar-default 
 .navbar-nav > li > a:hover {
 	color:#50dfef;
 }
 
+div.timeline-event-tape {
+	background-color:#fccb11;
+	border-radius:0.5em;
+}
+
+div.timeline-small-event-tape {
+	background-color:#fccb11;
+	border-radius:0.1em;
+}
+	
+
 .navbar-default .navbar-brand {
 	color:#fff;
 	font-size:1em;
+}
+
+}
+DIV.navbar-collapse.collapse.in {
+	border:none;
 }
 
 .navbar-default .navbar-brand img {
@@ -37,7 +57,11 @@ body {
 
 .roundedInput {
 	border-radius: 1em;
-	margin-right:2em;
+}
+
+.navbar-form {
+	white-space:nowrap;
+	border:none;
 }
 
 .timeline-ether-bg {
