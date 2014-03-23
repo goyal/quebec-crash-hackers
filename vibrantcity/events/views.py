@@ -44,7 +44,7 @@ def list_events(request):
 		    title = binding['la']['value'],
 		    start = binding['dd']['value'],
 		    #end = binding['df']['value'] if binding['df']['value'] != binding['dd']['value'] else "",
-		    options = dict(theme='TimemapDataset.blueTheme()', description='%s - %s<br/>%s - <a href=http://107.170.117.164:8890/describe/?url=%s>Lien vers l&#146;&eacute;v&egrave;nement</a>'%(binding['dd']['value'],binding['adr']['value'],binding['ll']['value'],binding['a']['value']))
+		    options = dict(theme='TimemapDataset.blueTheme()', description='%s - %s<br/>%s - <a href=http://107.170.117.164:8890/describe/?url=%s>Lien vers l&#146;&eacute;v&egrave;nement</a>'%(binding['ll']['value'],binding['adr']['value'],binding['dd']['value'],binding['a']['value']))
 		    ))
 
     resp = StreamingHttpResponse(json.dumps(events), content_type='application/json')
